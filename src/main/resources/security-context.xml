@@ -1,0 +1,61 @@
+<beans xmlns:security="http://www.springframework.org/schema/security"
+             xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+  <security:http auto-config="false" create-session="ifRequired" use-expressions="false" access-decision-manager-ref="businessAccessDecisionManager"
+                 entry-point-ref="loginUrlAuthenticationEntryPoint">
+
+    <security:headers>
+      <security:frame-options policy="SAMEORIGIN" />
+    </security:headers>
+    <security:csrf disabled="true" />
+    <security:custom-filter ref="usernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER" />
+    <security:logout logout-url="/logout" logout-success-url="/login?logout=1" />
+    <security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:intercept-url pattern="/*/**" access="IS_AUTHENTICATED_FULLY" />
+  </security:http>
+
+  <security:authentication-manager alias="authenticationManager">
+    <security:authentication-provider ref="userDetailsAuthenticationProvider" />
+  </security:authentication-manager>
+
+  <bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+    <property name="filterProcessesUrl" value="/authenticate" />
+    <property name="usernameParameter" value="username" />
+    <property name="passwordParameter" value="password" />
+    <property name="authenticationManager" ref="authenticationManager" />
+  </bean>
+
+  <bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <constructor-arg value="/login" />
+  </bean>
+
+  <bean id="userDetailsAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+    <property name="passwordEncoder">
+      <bean class="org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder">
+        <constructor-arg value="MD5" />
+      </bean>
+    </property>
+    <property name="userDetailsService" ref="userDetailsService" />
+  </bean>
+
+  <bean id="userDetailsService" class="com.tobacco.sales.security.UserDetailsService" />
+
+  <bean id="businessAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+    <constructor-arg>
+      <list>
+        <ref local="roleVoter" />
+        <ref local="authenticatedVoter" />
+      </list>
+    </constructor-arg>
+    <property name="allowIfAllAbstainDecisions" value="false" />
+  </bean>
+  <bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+    <property name="rolePrefix" value="ROLE_" />
+  </bean>
+  <bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+</beans>
