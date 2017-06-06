@@ -37,34 +37,6 @@ CREATE TABLE `orders` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `role_user_link`
---
-
-DROP TABLE IF EXISTS `role_user_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role_user_link` (
-  `rolename` varchar(64) NOT NULL,
-  `username` varchar(64) NOT NULL,
-  PRIMARY KEY (`rolename`,`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色/用户关联表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `roles` (
-  `rolename` varchar(64) NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`rolename`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `tobacco`
 --
 
@@ -102,6 +74,37 @@ CREATE TABLE `tobacco_quantity` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `user_attrs`
+--
+
+DROP TABLE IF EXISTS `user_attrs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_attrs` (
+  `username` varchar(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `value` varchar(64) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`username`,`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户属性表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_roles` (
+  `username` varchar(64) NOT NULL,
+  `rolename` varchar(64) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`username`,`rolename`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色/用户关联表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
@@ -126,4 +129,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-02 15:31:52
+-- Dump completed on 2017-06-06 17:55:01

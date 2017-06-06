@@ -5,9 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-/**
- * @author liqingfei
- */
 @ImportResource("classpath:security-context.xml")
 public class SecurityConfig {
 

@@ -6,6 +6,12 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
+  <security:http pattern="/js/**/*" security="none" />
+  <security:http pattern="/image/**/*" security="none" />
+  <security:http pattern="/css/**/*" security="none" />
+
+  <security:http pattern="/ws/**/*" security="none" />
+
   <security:http auto-config="false" create-session="ifRequired" use-expressions="false" access-decision-manager-ref="businessAccessDecisionManager"
                  entry-point-ref="loginUrlAuthenticationEntryPoint">
 

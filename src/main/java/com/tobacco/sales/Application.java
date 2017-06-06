@@ -8,9 +8,6 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-/**
- * @author liqingfei
- */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 

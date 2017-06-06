@@ -1,10 +1,9 @@
 package com.tobacco.sales.entity;
 
-public class User {
+public class Role {
 
     private String username;
-    private String password;
-    private int status;
+    private String rolename;
     private long updated;
 
     public String getUsername() {
@@ -15,20 +14,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     public long getUpdated() {
@@ -44,22 +35,24 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Role role = (Role) o;
 
-        return username != null ? username.equals(user.username) : user.username == null;
+        if (username != null ? !username.equals(role.username) : role.username != null) return false;
+        return rolename != null ? rolename.equals(role.rolename) : role.rolename == null;
     }
 
     @Override
     public int hashCode() {
-        return username != null ? username.hashCode() : 0;
+        int result = username != null ? username.hashCode() : 0;
+        result = 31 * result + (rolename != null ? rolename.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Role{" +
                 "username='" + username + '\'' +
-                ", password= xxxxxx'" + '\'' +
-                ", status=" + status +
+                ", rolename='" + rolename + '\'' +
                 ", updated=" + updated +
                 '}';
     }
