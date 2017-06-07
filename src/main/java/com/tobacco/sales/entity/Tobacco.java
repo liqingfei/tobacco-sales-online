@@ -1,5 +1,7 @@
 package com.tobacco.sales.entity;
 
+import java.util.UUID;
+
 public class Tobacco {
 
     private String id;
@@ -11,6 +13,9 @@ public class Tobacco {
     private long updated;
 
     public String getId() {
+        if (id == null) {
+            id = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        }
         return id;
     }
 

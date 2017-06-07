@@ -15,6 +15,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Autowired
     private UserDaoImpl userDao;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.tobacco.sales.entity.User user = userDao.findByName(username);

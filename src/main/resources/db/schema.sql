@@ -28,7 +28,7 @@ CREATE TABLE `orders` (
   `tobacco_id` char(32) NOT NULL,
   `order_quantity` int(10) unsigned NOT NULL,
   `order_money` float unsigned NOT NULL,
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `order_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `username_idx` (`username`),

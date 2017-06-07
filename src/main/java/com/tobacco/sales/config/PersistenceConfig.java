@@ -1,16 +1,17 @@
 package com.tobacco.sales.config;
 
+import com.tobacco.sales.dao.OrderDaoImpl;
+import com.tobacco.sales.dao.TobaccoDaoImpl;
 import com.tobacco.sales.dao.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-/**
- * @author liqingfei
- */
+@EnableTransactionManagement
 public class PersistenceConfig {
 
     @Value(value = "${datasource.driver-class-name}")
@@ -42,7 +43,19 @@ public class PersistenceConfig {
     @Bean
     public UserDaoImpl userDao() {
         UserDaoImpl dao = new UserDaoImpl();
-        return new UserDaoImpl();
+        return dao;
+    }
+
+    @Bean
+    public TobaccoDaoImpl tobaccoDao() {
+        TobaccoDaoImpl dao = new TobaccoDaoImpl();
+        return dao;
+    }
+
+    @Bean
+    public OrderDaoImpl orderDao() {
+        OrderDaoImpl dao = new OrderDaoImpl();
+        return dao;
     }
 
 }

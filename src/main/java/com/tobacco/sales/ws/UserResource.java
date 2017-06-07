@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +41,25 @@ public class UserResource {
         } else {
             return null;
         }
+    }
+
+    @POST
+    @Path("/password")
+    @Consumes("application/x-www-form-urlencoded;charset=UTF-8")
+    @Transactional
+    public Response updatePassword(
+            @FormParam("username") String username,
+            @FormParam("oldPassword") String oldPassword,
+            @FormParam("newPassword") String newPassword) {
+
+        Assert.hasLength(username, "Username must be defined.");
+        Assert.hasLength(oldPassword, "OldPassword must be defined.");
+        Assert.hasLength(newPassword, "NewPassword must be defined.");
+
+        userDao.updatePassword(username, oldPassword, newPassword);
+
+        return Response.ok().build();
+
     }
 
     @Path("/")

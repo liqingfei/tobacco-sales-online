@@ -99,4 +99,20 @@ public class UserDaoImpl {
 
         return list;
     }
+
+    public void updatePassword(String username, String oldPassword, String newPassword) throws DataAccessException {
+        User user = findByName(username);
+
+        if (user.getPassword().equals(oldPassword)) {
+            int updated = template.update(
+                    "update users set passwd = ? where username = ? and passwd = ?",
+                    new Object[] {newPassword, username, oldPassword}
+            );
+            if (updated == 0) {
+                throw new IllegalArgumentException("Update password error.");
+            }
+        } else {
+            throw new IllegalArgumentException("password must match with old.");
+        }
+    }
 }
