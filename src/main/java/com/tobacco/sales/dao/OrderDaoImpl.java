@@ -45,9 +45,12 @@ public class OrderDaoImpl {
         return order;
     }
 
-    public List<Order> list() throws DataAccessException {
+    public List<Order> list(String username) throws DataAccessException {
         List<Order> list = template.query(
-                "select * from orders",
+                "select * from orders where username = ?",
+                new Object[] {
+                        username
+                },
                 new RowMapper<Order>() {
                     @Override
                     public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -66,10 +69,13 @@ public class OrderDaoImpl {
         return list;
     }
 
-    public List<Order> findByStatus(int status) throws DataAccessException {
+    public List<Order> findByStatus(String username, int status) throws DataAccessException {
         List<Order> list = template.query(
-                "select * from orders where status = ?",
-                new Object[]{status},
+                "select * from orders where username=? and status = ?",
+                new Object[]{
+                        username,
+                        status
+                },
                 new RowMapper<Order>() {
                     @Override
                     public Order mapRow(ResultSet rs, int rowNum) throws SQLException {

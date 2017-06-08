@@ -29,6 +29,7 @@ public class UserResource {
     @Autowired
     private UserDaoImpl userDao;
 
+    @GET
     @Path("/current")
     public UserDTO currentUser() {
         if (SecurityContextHolder.getContext().getAuthentication() != null  && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
@@ -37,7 +38,8 @@ public class UserResource {
             for (GrantedAuthority authority : principal.getAuthorities()) {
                 roles.add(authority.getAuthority());
             }
-            return new UserDTO(principal.getUsername(), roles, principal.getAttributes());
+            UserDTO dto = new UserDTO(principal.getUsername(), roles, principal.getAttributes());
+            return dto;
         } else {
             return null;
         }

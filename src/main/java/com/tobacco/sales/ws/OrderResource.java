@@ -23,11 +23,13 @@ public class OrderResource {
     private OrderDaoImpl orderDao;
 
     @GET
-    public List<OrderDTO> list(@QueryParam("status") Integer status) {
+    public List<OrderDTO> list(@QueryParam("username") String username, @QueryParam("status") Integer status) {
+
+        Assert.hasLength(username, "Username must be defined.");
         List<OrderDTO> dtos = new ArrayList<OrderDTO>();
         OrderDTO dto;
         if (status == null) {
-            for (Order order : orderDao.list()) {
+            for (Order order : orderDao.list(username)) {
                 dto = new OrderDTO();
                 dto.setId(order.getId());
                 dto.setUsername(order.getUsername());
@@ -39,7 +41,7 @@ public class OrderResource {
                 dtos.add(dto);
             }
         } else {
-            for (Order order : orderDao.findByStatus(status)) {
+            for (Order order : orderDao.findByStatus(username, status)) {
                 dto = new OrderDTO();
                 dto.setId(order.getId());
                 dto.setUsername(order.getUsername());

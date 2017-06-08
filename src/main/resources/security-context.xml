@@ -10,8 +10,6 @@
   <security:http pattern="/image/**/*" security="none" />
   <security:http pattern="/css/**/*" security="none" />
 
-  <security:http pattern="/ws/**/*" security="none" />
-
   <security:http auto-config="false" create-session="ifRequired" use-expressions="false" access-decision-manager-ref="businessAccessDecisionManager"
                  entry-point-ref="loginUrlAuthenticationEntryPoint">
 
@@ -20,8 +18,9 @@
     </security:headers>
     <security:csrf disabled="true" />
     <security:custom-filter ref="usernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER" />
-    <security:logout logout-url="/logout" logout-success-url="/login?logout=1" />
-    <security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:logout logout-url="/logout" logout-success-url="/login.html?logout=1" />
+    <security:intercept-url pattern="/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:intercept-url pattern="/authenticate" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <security:intercept-url pattern="/*/**" access="IS_AUTHENTICATED_FULLY" />
   </security:http>
 
@@ -37,7 +36,7 @@
   </bean>
 
   <bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-    <constructor-arg value="/login" />
+    <constructor-arg value="/login.html" />
   </bean>
 
   <bean id="userDetailsAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
