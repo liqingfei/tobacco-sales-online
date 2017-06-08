@@ -54,7 +54,7 @@ public class TobaccoDaoImpl {
 
     public Tobacco update(Tobacco tobacco) throws DataAccessException {
         int rows = template.update(
-                "update tobacco set name = ?, mfrs = ?, spec = ?, price = ?, description = ? where id = ?",
+                "update tobacco set name = ?, mfrs = ?, spec = ?, price = ?, description = ?, updated = now() where id = ?",
                 new Object[] {
                         tobacco.getName(),
                         tobacco.getMfrs(),
@@ -128,7 +128,7 @@ public class TobaccoDaoImpl {
 
     public TobaccoQuantity update(TobaccoQuantity quantity) throws DataAccessException {
         int rows = template.update(
-                "update tobacco_quantity set quantity = ?, status = ? where tobacco_id = ?",
+                "update tobacco_quantity set quantity = ?, status = ?, updated = now() where tobacco_id = ?",
                 new Object[] {
                         quantity.getQuantity(),
                         quantity.getStatus(),

@@ -105,7 +105,7 @@ public class UserDaoImpl {
 
         if (user.getPassword().equals(oldPassword)) {
             int updated = template.update(
-                    "update users set passwd = ? where username = ? and passwd = ?",
+                    "update users set passwd = ?, updated = now() where username = ? and passwd = ?",
                     new Object[] {newPassword, username, oldPassword}
             );
             if (updated == 0) {

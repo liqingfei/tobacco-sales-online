@@ -90,15 +90,14 @@ public class OrderDaoImpl {
 
     public Order create(Order order) throws DataAccessException {
         int rows = template.update(
-                "insert into orders (`id`, `username`, `tobacco_id`, `order_quantity`, `order_money`, `status`, `order_time`) values (?, ?, ?, ?, ?, ?, ?)",
+                "insert into orders (`id`, `username`, `tobacco_id`, `order_quantity`, `order_money`, `status`, `order_time`) values (?, ?, ?, ?, ?, ?, now())",
                 new Object[] {
                         order.getId(),
                         order.getUsername(),
                         order.getTobaccoId(),
                         order.getQuantity(),
                         order.getMoney(),
-                        order.getStatus(),
-                        order.getUpdated()
+                        order.getStatus()
                 }
         );
 
