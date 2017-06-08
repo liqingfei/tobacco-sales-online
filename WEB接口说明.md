@@ -14,7 +14,7 @@
 说明：
 
 - 参数：无
-- Methon：**GET**
+- Method：**GET**
 - Content-Type：**application/json**
 - 返回值：
 
@@ -58,7 +58,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" http://127.0.0.1:8080/w
 说明：
 
 - 参数：无
-- Methon：**GET**
+- Method：**GET**
 - Content-Type：**application/json**
 - 返回值：
 
@@ -103,7 +103,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" http://127.0.0.1:8080/w
 
 - 参数：username, oldPassword, newPassword
 - 密码采用**MD5**加密
-- Methon：**POST**
+- Method：**POST**
 - Content-Type：**application/x-www-form-urlencoded**
 - 返回值：无
 - 例子：
@@ -145,7 +145,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" http://127.0.0.1:8080/w
 说明：
 
 - 参数：无
-- Methon：**GET**
+- Method：**GET**
 - Content-Type：**application/json**
 -  返回值：
 
@@ -194,7 +194,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" http://127.0.0.1:8080/w
 {"name":"黄鹤楼","mfrs":"云南卷烟厂","spec":"xx","price":18.8,"description":"This is test create","quantity":2000,"status":1}
 ```
 
-- Methon：**POST**
+- Method：**POST**
 - Content-Type：**application/json**
 -  返回值：无
 -  例子：
@@ -239,7 +239,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" -H "Content-Type:applic
 {"id":"C09159FE910941299A9DAD5CE9FA59E0","name":"黄鹤楼","mfrs":"云南卷烟厂","spec":"xx","price":18.8,"description":"This is test update","updated":1496851200000,"quantity":2000,"status":1}
 ```
 
-- Methon：**PUT**
+- Method：**PUT**
 - Content-Type：**application/json**
 -  返回值：更新后的对象
 -  例子：
@@ -286,7 +286,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" -H "Content-Type:applic
 {"id":"C09159FE910941299A9DAD5CE9FA59E0","name":"黄鹤楼","mfrs":"云南卷烟厂","spec":"xx","price":18.8,"description":"This is test update","updated":1496851200000,"quantity":2000,"status":1}
 ```
 
-- Methon：**DELETE**
+- Method：**DELETE**
 - Content-Type：**application/json**
 -  返回值：无
 -  例子：
@@ -329,7 +329,7 @@ curl -v -H "Cookie:JSESSIONID=1457adma9y2dw2cet8nv9lr2n" -H "Content-Type:applic
 
 - 参数：?username=xxx&status=xxx
 username：当前登录用户名，**必须提供**；status：订单状态（1 已处理，0 未处理）如果不提供status则默认所有状态订单
-- Methon：**GET**
+- Method：**GET**
 - Content-Type：**application/json**
 - 返回值：
 
@@ -371,7 +371,7 @@ curl -v -H "Cookie:JSESSIONID=17q6vhzsi83r0swxjz41gqjuc" http://127.0.0.1:8080/w
 ```
 {"username":"admin","tobaccoId":"1AA9BC4AC2294C798EF60FB11E23C56D","quantity":3,"money":5.64,"status":0}
 ```
-- Methon：**POST**
+- Method：**POST**
 - Content-Type：**application/json**
 - 返回值：无
 - 例子：
@@ -415,7 +415,7 @@ curl -v -H "Cookie:JSESSIONID=17q6vhzsi83r0swxjz41gqjuc" -H "Content-Type:applic
 ```
 {"id":"46B5AAE88CE54E6CBC389EB9EB273B4C","username":"admin","tobaccoId":"1AA9BC4AC2294C798EF60FB11E23C56D","quantity":3,"money":5.64,"status":0,"updated":1496851200000}
 ```
-- Methon：**PUT**
+- Method：**PUT**
 - Content-Type：**application/json**
 - 返回值：无
 - 例子：
