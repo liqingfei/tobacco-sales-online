@@ -9,7 +9,7 @@
   <security:http pattern="/js/**/*" security="none" />
   <security:http pattern="/image/**/*" security="none" />
   <security:http pattern="/css/**/*" security="none" />
-
+  
   <security:http auto-config="false" create-session="ifRequired" use-expressions="false" access-decision-manager-ref="businessAccessDecisionManager"
                  entry-point-ref="loginUrlAuthenticationEntryPoint">
 
@@ -21,6 +21,9 @@
     <security:logout logout-url="/logout" logout-success-url="/login.html?logout=1" />
     <security:intercept-url pattern="/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <security:intercept-url pattern="/authenticate" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:intercept-url pattern="/ws/*/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:intercept-url pattern="/index.html" access="IS_AUTHENTICATED_FULLY" />
+    <security:intercept-url pattern="/" access="IS_AUTHENTICATED_FULLY" />
     <security:intercept-url pattern="/*/**" access="IS_AUTHENTICATED_FULLY" />
   </security:http>
 
